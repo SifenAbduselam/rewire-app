@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 
 export default function BrainVisual({ day }) {
-  const sparkSize = Math.min(day * 5, 100);
+  // Handle day 0 - start with minimal glow
+  const sparkSize = day === 0 ? 5 : Math.min(day * 5, 100);
 
   return (
     <div className="flex flex-col items-center">

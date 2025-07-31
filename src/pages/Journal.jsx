@@ -1,3 +1,4 @@
+// src/pages/Journal.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,39 +13,31 @@ export default function Journal() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50 p-6 flex items-center justify-center">
-      <div className="max-w-2xl w-full bg-white rounded-2xl shadow-xl p-8">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">Daily Reflection 📝</h2>
-          <p className="text-gray-600">Date: {today}</p>
-        </div>
-
-        <div className="mb-6">
-          <label className="block text-gray-700 font-medium mb-3">
-            Write about your day, distractions, or what helped you stay on track:
-          </label>
-          <textarea
-            value={entry}
-            onChange={(e) => setEntry(e.target.value)}
-            className="w-full h-64 border-2 border-gray-200 rounded-xl p-4 focus:border-green-500 focus:outline-none transition-colors duration-200 resize-none text-lg"
-            placeholder="Start writing your daily reflection..."
-          />
-        </div>
-
-        <div className="flex gap-4 justify-center">
-          <button
-            onClick={saveEntry}
-            className="px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            💾 Save Entry
-          </button>
-          <button
-            onClick={() => navigate("/dashboard")}
-            className="px-8 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-xl hover:bg-gray-50 transition-all duration-200 font-medium"
-          >
-            ← Back to Dashboard
-          </button>
-        </div>
+    <div className="max-w-xl mx-auto p-6">
+      <h2 className="text-2xl font-bold mb-2">Daily Reflection 📝</h2>
+      <p className="mb-2 text-gray-600">Date: {today}</p>
+      <p className="mb-4 text-gray-600">Write about your day, distractions, or what helped you stay on track.</p>
+      
+      <textarea
+        value={entry}
+        onChange={(e) => setEntry(e.target.value)}
+        className="w-full h-48 border rounded-xl p-4"
+        placeholder="Start writing..."
+      />
+      
+      <div className="flex gap-4 mt-4">
+        <button
+          onClick={saveEntry}
+          className="bg-indigo-600 text-white py-2 px-6 rounded-xl hover:bg-indigo-700 transition"
+        >
+          Save
+        </button>
+        <button
+          onClick={() => navigate("/dashboard")}
+          className="bg-gray-300 text-black py-2 px-6 rounded-xl hover:bg-gray-400 transition"
+        >
+          Back
+        </button>
       </div>
     </div>
   );

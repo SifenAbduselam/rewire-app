@@ -1,3 +1,4 @@
+// src/pages/Dashboard.jsx
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BrainVisual from "../components/BrainVisual";
@@ -7,96 +8,107 @@ import NeuralWiring from "../components/NeuralWiring";
 
 export default function Dashboard() {
   const [habit, setHabit] = useState("");
-  const [day, setDay] = useState(1);
+  const [day, setDay] = useState(0);
   const navigate = useNavigate();
 
+  // Load data from localStorage when component mounts
   useEffect(() => {
-    setHabit(localStorage.getItem("habit") || "");
-    const savedDay = localStorage.getItem("current_day");
-    if (savedDay) {
-      setDay(parseInt(savedDay));
+    // Load habit
+    const savedHabit = localStorage.getItem("habit");
+    if (savedHabit) {
+      setHabit(savedHabit);
+      
+      // Load habit-specific day count
+      const habitDayKey = `habit_day_${encodeURIComponent(savedHabit)}`;
+      const savedDay = localStorage.getItem(habitDayKey);
+      
+      if (savedDay !== null) {
+        const parsedDay = parseInt(savedDay);
+        if (!isNaN(parsedDay)) {
+          setDay(parsedDay);
+        }
+      }
+    } else {
+      navigate("/pickhabit");
     }
-  }, []);
+  }, [navigate]);
 
   const handleCheckIn = () => {
     const newDay = day + 1;
     setDay(newDay);
-    localStorage.setItem("current_day", newDay.toString());
     
-    if (newDay > 21) {
-      const score = Math.min(100, Math.floor((21 / 21) * 100));
+    // Save habit-specific day count
+    const habitDayKey = `habit_day_${encodeURIComponent(habit)}`;
+    localStorage.setItem(habitDayKey, newDay.toString());
+    
+    // Check if habit is completed (21 days)
+    if (newDay >= 21) {
+      const score = 100;
       localStorage.setItem("rewiring_score", score.toString());
-      setTimeout(() => navigate("/completion"), 1000);
+      
+      // Redirect to completion after a delay
+      setTimeout(() => {
+        navigate("/completion");
+      }, 1500);
     }
   };
 
+  // Calculate progress percentage
   const progressPercentage = Math.min(100, (day / 21) * 100);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 p-6">
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">Your Habit Dashboard</h2>
-            <p className="text-xl text-indigo-600 font-semibold">"{habit}"</p>
-          </div>
+    <div className="p-6">
+      <h2 className="text-2xl font-bold mb-2">Habit: {habit}</h2>
+      <p className="text-gray-600 mb-4">Day {day} of 21</p>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6">
-              <h3 className="text-lg font-semibold text-gray-700 mb-4 text-center">Progress</h3>
-              <div className="mb-4">
-                <div className="flex justify-between text-sm text-gray-600 mb-2">
-                  <span>Day {day} of 21</span>
-                  <span>{Math.round(progressPercentage)}%</span>
-                </div>
-                <ProgressBar progress={progressPercentage} />
-              </div>
-              <NeuralWiring progress={progressPercentage} />
-            </div>
+      <div className="mb-6">
+        <ProgressBar progress={progressPercentage} />
+      </div>
 
-            <div className="flex flex-col items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6">
-              <h3 className="text-lg font-semibold text-gray-700 mb-4">Neural Activity</h3>
-              <BrainVisual day={day} />
-            </div>
-          </div>
+      <div className="flex justify-center mb-6">
+        <NeuralWiring progress={progressPercentage} />
+      </div>
 
-          <div className="text-center mb-6">
-            {day <= 21 ? (
-              <button
-                onClick={handleCheckIn}
-                className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 text-lg"
-              >
-                ✅ I Did It Today (Day {day})
-              </button>
-            ) : (
-              <div className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold rounded-xl shadow-lg">
-                🎉 Habit Complete! Redirecting...
-              </div>
-            )}
-          </div>
+      <div className="flex justify-center mb-6">
+        <BrainVisual day={day} />
+      </div>
 
-          <div className="text-center">
-            <MotivationMessage day={day} />
-          </div>
-        </div>
+      <div className="text-center mb-6">
+        <button
+          onClick={handleCheckIn}
+          className="bg-green-600 text-white px-6 py-3 rounded-xl hover:bg-green-700 transition"
+        >
+          ✅ I Did It Today (Day {day + 1})
+        </button>
+      </div>
 
-        <div className="flex gap-4 justify-center">
-          <button
-            onClick={() => navigate("/journal")}
-            className="px-6 py-3 bg-white text-indigo-600 border-2 border-indigo-200 rounded-xl hover:bg-indigo-50 transition-all duration-200 font-medium"
-          >
-            📝 Daily Journal
-          </button>
-          <button
-            onClick={() => {
-              localStorage.clear();
-              navigate("/");
-            }}
-            className="px-6 py-3 bg-white text-red-600 border-2 border-red-200 rounded-xl hover:bg-red-50 transition-all duration-200 font-medium"
-          >
-            🔄 Reset Progress
-          </button>
-        </div>
+      <div className="text-center">
+        <MotivationMessage day={day} />
+      </div>
+
+      <div className="flex gap-4 justify-center mt-8">
+        <button
+          onClick={() => navigate("/myhabits")}
+          className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition"
+        >
+          📊 My Habits
+        </button>
+        <button
+          onClick={() => navigate("/journal")}
+          className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+        >
+          📝 Journal
+        </button>
+        <button
+          onClick={() => {
+            const habitDayKey = `habit_day_${encodeURIComponent(habit)}`;
+            localStorage.setItem(habitDayKey, "0");
+            setDay(0);
+          }}
+          className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition"
+        >
+          🔄 Reset
+        </button>
       </div>
     </div>
   );
