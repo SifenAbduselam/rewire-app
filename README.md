@@ -1,12 +1,36 @@
-# React + Vite
+Rewire - App 
+A React application that helps users build lasting habits through a 21-day tracking system with progress visualization and multiple habit management.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Key Features
+Multiple Habit Tracking: Manage several habits simultaneously with separate progress for each
+Progress Visualization: Animated brain graphics and circular progress indicators
+Data Persistence: All progress saved locally and persists between sessions
+Daily Journal: Track your journey with daily reflections
+Responsive Design: Works perfectly on mobile, tablet, and desktop
+Educational Content: Learn about neuroplasticity and brain rewiring
+## Technologies Used
+React.js - Modern component-based architecture
+React Router - Client-side routing
+Tailwind CSS - Utility-first styling framework
+Local Storage API - Browser-based data persistence
+Framer Motion - Smooth animations
+JavaScript (ES6+) - Modern JavaScript features
+## Live Demo
+https://sifenabduselam.github.io/rewire-app/
 
-Currently, two official plugins are available:
+## Installation
+     Bash
+1. git clone https://github.com/sifenabduselam/rewire-app.git
+2. cd rewire-app
+3. npm install
+4. npm run dev
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Learning Outcomes
+This project demonstrates
+State management with React Hooks
+Client-side data persistence
+Component-based architecture
+Responsive UI design
+Professional code organization
+Debugging and deployment skills
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
