@@ -17,7 +17,7 @@ export default function Home() {
             Build better habits, one day at a time
           </p>
           <div className="flex justify-center mb-6">
-            <BrainVisual day={1} />
+            <BrainVisual day={0} />
           </div>
           <button 
             onClick={() => navigate("/pickhabit")}
