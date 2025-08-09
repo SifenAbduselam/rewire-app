@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+
+.dashboard {
+  @apply bg-white rounded-xl p-6 shadow-md max-w-3xl mx-auto;
+}
+
+.progress-section {
+  @apply flex flex-col sm:flex-row items-center justify-between gap-3 mb-6 bg-gray-50 p-4 rounded-lg;
+}
+
+.info-text p {
+  @apply text-gray-700 text-center leading-relaxed;
+}

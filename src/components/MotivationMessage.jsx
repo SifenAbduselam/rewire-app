@@ -1,6 +1,5 @@
-// src/components/DailyMessage.jsx
-
-export default function DailyMessage({ day }) {
+// src/components/MotivationMessage.jsx
+export default function MotivationMessage({ day }) {
   const messages = [
     "Your prefrontal cortex is getting stronger 💪 Keep going!",
     "New neural pathways forming 🔥 Stay consistent!",
@@ -13,7 +12,7 @@ export default function DailyMessage({ day }) {
   const message = messages[day % messages.length];
 
   return (
-    <p className="mt-8 italic text-gray-700 max-w-md text-center">
+    <p className="mt-8 italic text-gray-700 max-w-md text-center mx-auto">
       {message}
     </p>
   );

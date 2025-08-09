@@ -13,28 +13,28 @@ export default function Journal() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-2">Daily Reflection 📝</h2>
-      <p className="mb-2 text-gray-600">Date: {today}</p>
-      <p className="mb-4 text-gray-600">Write about your day, distractions, or what helped you stay on track.</p>
+    <div className="p-4 sm:p-6 max-w-xl mx-auto">
+      <h2 className="text-xl sm:text-2xl font-bold mb-2">Daily Reflection 📝</h2>
+      <p className="mb-2 text-gray-600 text-sm sm:text-base">Date: {today}</p>
+      <p className="mb-4 text-gray-600 text-sm">Write about your day, distractions, or what helped you stay on track.</p>
       
       <textarea
         value={entry}
         onChange={(e) => setEntry(e.target.value)}
-        className="w-full h-48 border rounded-xl p-4"
+        className="w-full h-40 sm:h-48 border rounded-lg sm:rounded-xl p-3 sm:p-4 text-sm sm:text-base"
         placeholder="Start writing..."
       />
       
-      <div className="flex gap-4 mt-4">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4">
         <button
           onClick={saveEntry}
-          className="bg-indigo-600 text-white py-2 px-6 rounded-xl hover:bg-indigo-700 transition"
+          className="px-4 py-2 sm:px-6 sm:py-3 bg-indigo-600 text-white rounded-lg sm:rounded-xl hover:bg-indigo-700 transition text-sm sm:text-base flex-1"
         >
           Save
         </button>
         <button
           onClick={() => navigate("/dashboard")}
-          className="bg-gray-300 text-black py-2 px-6 rounded-xl hover:bg-gray-400 transition"
+          className="px-4 py-2 sm:px-6 sm:py-3 bg-gray-300 text-black rounded-lg sm:rounded-xl hover:bg-gray-400 transition text-sm sm:text-base flex-1"
         >
           Back
         </button>

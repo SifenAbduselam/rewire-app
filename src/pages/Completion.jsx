@@ -1,3 +1,4 @@
+// src/pages/Completion.jsx
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -13,42 +14,27 @@ export default function Completion() {
   }, [habit, navigate]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-orange-50 to-red-100 flex flex-col items-center justify-center p-6">
-      <div className="max-w-2xl w-full bg-white rounded-2xl shadow-2xl p-10 text-center">
-        <div className="text-8xl mb-6">🎉</div>
-        
-        <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-red-600 mb-4">
-          Congratulations! 🧠
-        </h1>
-        
-        <p className="text-xl text-gray-700 mb-2">You've successfully rewired your brain with:</p>
-        <p className="font-bold text-2xl text-indigo-600 mb-6">"{habit}"</p>
-        
-        <div className="bg-gradient-to-r from-yellow-100 to-orange-100 rounded-xl p-6 mb-8">
-          <p className="text-lg text-gray-700 mb-2">Your Rewiring Score:</p>
-          <p className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-red-600">
-            {score}%
-          </p>
-        </div>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-100 to-white p-4 sm:p-6 text-center">
+      <h1 className="text-2xl sm:text-4xl font-bold text-green-700 mb-3 sm:mb-4">🎉 You Rewired Your Brain!</h1>
+      <p className="text-base sm:text-xl mb-2">You completed your 21-day habit:</p>
+      <p className="font-bold text-lg sm:text-2xl mb-3 sm:mb-4">{habit}</p>
+      <p className="text-base sm:text-lg">Your Rewiring Score: <span className="text-indigo-600 font-bold">{score}%</span></p>
 
-        <div className="mb-8">
-          <span className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-6 py-3 rounded-full text-lg font-semibold shadow-lg">
-            🧠 Brain Rewired Badge Unlocked!
-          </span>
-        </div>
+      <div className="my-4 sm:my-6">
+        <span className="bg-green-200 px-3 py-1 sm:px-4 sm:py-2 rounded-full text-green-800 text-sm sm:text-lg">🧠 Brain Rewired Badge</span>
+      </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link to="/pickhabit">
-            <button className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-              🔄 Start New Habit
-            </button>
-          </Link>
-          <Link to="/dashboard">
-            <button className="px-8 py-4 bg-white text-gray-700 border-2 border-gray-300 font-semibold rounded-xl hover:bg-gray-50 transition-all duration-300">
-              📊 View Dashboard
-            </button>
-          </Link>
-        </div>
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 sm:mt-6 w-full max-w-md">
+        <Link to="/pickhabit" className="flex-1">
+          <button className="w-full px-4 py-2 sm:px-6 sm:py-3 bg-indigo-600 text-white rounded-lg sm:rounded-xl hover:bg-indigo-700 transition text-sm sm:text-base">
+            New Habit
+          </button>
+        </Link>
+        <Link to="/dashboard" className="flex-1">
+          <button className="w-full px-4 py-2 sm:px-6 sm:py-3 bg-gray-300 text-black rounded-lg sm:rounded-xl hover:bg-gray-400 transition text-sm sm:text-base">
+            Back to Dashboard
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-// src/pages/PickHabit.jsx
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,12 +15,12 @@ export default function PickHabit() {
   }, []);
 
   const presetHabits = [
-    "📚 Study 30 minutes", 
-    "💧 Drink 8 glasses of water", 
-    "📖 Read 20 pages", 
-    "🧘 Meditate for 10 minutes", 
-    "🏃 Exercise for 30 minutes", 
-    "📝 Write in journal"
+    "📚 Study 30 minutes",
+    "💧 Drink 8 glasses of water",
+    "📖 Read 20 pages",
+    "🧘 Meditate for 10 minutes",
+    "🏃 Exercise for 30 minutes",
+    "📝 Write in journal",
   ];
 
   const allHabits = [...presetHabits, ...customHabits];
@@ -29,22 +28,20 @@ export default function PickHabit() {
   const handleSubmit = () => {
     if (habit.trim()) {
       localStorage.setItem("habit", habit);
-      
-      // Only create the key if it doesn't exist
+
       const habitDayKey = `habit_day_${encodeURIComponent(habit)}`;
       if (!localStorage.getItem(habitDayKey)) {
         localStorage.setItem(habitDayKey, "0");
       }
-      
+
       localStorage.removeItem("rewiring_score");
-      
-      // Save custom habit if it's new
+
       if (!presetHabits.includes(habit) && !customHabits.includes(habit)) {
         const updatedCustomHabits = [...customHabits, habit];
         setCustomHabits(updatedCustomHabits);
         localStorage.setItem("custom_habits", JSON.stringify(updatedCustomHabits));
       }
-      
+
       navigate("/dashboard");
     }
   };
@@ -83,3 +80,28 @@ export default function PickHabit() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

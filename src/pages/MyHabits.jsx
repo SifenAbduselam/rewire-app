@@ -7,7 +7,6 @@ export default function MyHabits() {
   const [habits, setHabits] = useState([]);
   const navigate = useNavigate();
 
-  // Load all habits from localStorage
   useEffect(() => {
     loadHabits();
   }, []);
@@ -20,7 +19,6 @@ export default function MyHabits() {
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       if (key && key.startsWith('habit_day_')) {
-        // Extract habit name from key
         const habitName = decodeURIComponent(key.replace('habit_day_', ''));
         habitNames.add(habitName);
       }
@@ -44,10 +42,10 @@ export default function MyHabits() {
   };
 
   const deleteHabit = (habitName) => {
-    if (window.confirm(`Are you sure you want to delete "${habitName}"? All progress will be lost.`)) {
+    if (window.confirm(`Delete "${habitName}"? All progress will be lost.`)) {
       const dayKey = `habit_day_${encodeURIComponent(habitName)}`;
       localStorage.removeItem(dayKey);
-      loadHabits(); // Reload the list
+      loadHabits();
     }
   };
 

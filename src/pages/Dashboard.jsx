@@ -11,10 +11,9 @@ export default function Dashboard() {
   const [day, setDay] = useState(0);
   const navigate = useNavigate();
 
-  // Load data from localStorage when component mounts
   useEffect(() => {
-    // Load habit
     const savedHabit = localStorage.getItem("habit");
+    
     if (savedHabit) {
       setHabit(savedHabit);
       
@@ -23,10 +22,9 @@ export default function Dashboard() {
       const savedDay = localStorage.getItem(habitDayKey);
       
       if (savedDay !== null) {
-        const parsedDay = parseInt(savedDay);
-        if (!isNaN(parsedDay)) {
-          setDay(parsedDay);
-        }
+        setDay(parseInt(savedDay));
+      } else {
+        setDay(0); // Default to day 0 for new habits
       }
     } else {
       navigate("/pickhabit");
@@ -34,57 +32,59 @@ export default function Dashboard() {
   }, [navigate]);
 
   const handleCheckIn = () => {
-    const newDay = day + 1;
-    setDay(newDay);
-    
-    // Save habit-specific day count
-    const habitDayKey = `habit_day_${encodeURIComponent(habit)}`;
-    localStorage.setItem(habitDayKey, newDay.toString());
-    
-    // Check if habit is completed (21 days)
-    if (newDay >= 21) {
-      const score = 100;
-      localStorage.setItem("rewiring_score", score.toString());
+    // Only increment if we haven't reached 21 days
+    if (day < 21) {
+      const newDay = day + 1;
+      setDay(newDay);
       
-      // Redirect to completion after a delay
-      setTimeout(() => {
-        navigate("/completion");
-      }, 1500);
+      // Save habit-specific day count
+      const habitDayKey = `habit_day_${encodeURIComponent(habit)}`;
+      localStorage.setItem(habitDayKey, newDay.toString());
+      
+      // If we reached 21 days, go to completion
+      if (newDay === 21) {
+        localStorage.setItem("rewiring_score", "100");
+        setTimeout(() => navigate("/completion"), 1500);
+      }
     }
   };
 
-  // Calculate progress percentage
-  const progressPercentage = Math.min(100, (day / 21) * 100);
+  // Make sure day doesn't exceed 21 for display
+  const displayDay = Math.min(day, 21);
+  const progressPercentage = Math.min(100, (displayDay / 21) * 100);
 
   return (
-    <div className="p-6">
+    <div className="p-6 max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold mb-2">Habit: {habit}</h2>
-      <p className="text-gray-600 mb-4">Day {day} of 21</p>
+      <p className="text-gray-600 mb-4">Day {displayDay} of 21</p>
 
       <div className="mb-6">
         <ProgressBar progress={progressPercentage} />
       </div>
 
-      <div className="flex justify-center mb-6">
-        <NeuralWiring progress={progressPercentage} />
-      </div>
-
-      <div className="flex justify-center mb-6">
-        <BrainVisual day={day} />
+      <div className="flex justify-center gap-8 mb-6">
+        <div>
+          <NeuralWiring progress={progressPercentage} />
+        </div>
+        <div>
+        </div>
       </div>
 
       <div className="text-center mb-6">
         <button
           onClick={handleCheckIn}
-          className="bg-green-600 text-white px-6 py-3 rounded-xl hover:bg-green-700 transition"
+          disabled={day >= 21}
+          className={`px-6 py-3 rounded-xl transition ${
+            day >= 21 
+              ? "bg-gray-400 text-gray-200 cursor-not-allowed" 
+              : "bg-green-600 text-white hover:bg-green-700"
+          }`}
         >
-          ✅ I Did It Today (Day {day + 1})
+          {day >= 21 ? "✅ Habit Completed!" : `✅ I Did It Today (Day ${displayDay})`}
         </button>
       </div>
 
-      <div className="text-center">
-        <MotivationMessage day={day} />
-      </div>
+      <MotivationMessage day={displayDay} />
 
       <div className="flex gap-4 justify-center mt-8">
         <button
