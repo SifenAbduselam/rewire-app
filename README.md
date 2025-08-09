@@ -1,4 +1,4 @@
-Rewire - App 
+## Rewire - App 
 A React application that helps users build lasting habits through a 21-day tracking system with progress visualization and multiple habit management.
 
 ## Key Features
@@ -26,11 +26,11 @@ https://sifenabduselam.github.io/rewire-app/
 4. npm run dev
 
 # Learning Outcomes
-This project demonstrates
-State management with React Hooks
-Client-side data persistence
-Component-based architecture
-Responsive UI design
-Professional code organization
+This project demonstrates , 
+State management with React Hooks , 
+Client-side data persistence , 
+Component-based architecture , 
+Responsive UI design , 
+Professional code organization , 
 Debugging and deployment skills
 
