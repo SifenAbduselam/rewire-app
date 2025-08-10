@@ -19,8 +19,8 @@ JavaScript (ES6+) - Modern JavaScript features
 
   ## screenshots
 
-  ![Home Page]
-  <img width="485" height="261" alt="image" src="https://github.com/user-attachments/assets/412a2512-7916-4bb3-aca7-fc36ab1b9185" />
+ 
+![Home Page](https://github.com/user-attachments/assets/412a2512-7916-4bb3-aca7-fc36ab1b9185)
 
 
 
