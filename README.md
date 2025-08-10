@@ -29,10 +29,6 @@ JavaScript (ES6+) - Modern JavaScript features
 <img width="713" height="251" alt="image" src="https://github.com/user-attachments/assets/25c9ef01-4d7c-44c2-8109-51192aa6d627" />
 
 
-
-
-
-
 ## Live Demo
 https://sifenabduselam.github.io/rewire-app/
 
