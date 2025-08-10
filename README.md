@@ -19,8 +19,15 @@ JavaScript (ES6+) - Modern JavaScript features
 
   ## screenshots
 
- 
-![Home Page](https://github.com/user-attachments/assets/412a2512-7916-4bb3-aca7-fc36ab1b9185)
+ ## Homepage
+<img width="460" height="314" alt="image" src="https://github.com/user-attachments/assets/d8494129-5fe7-427d-8a06-0228c7e66018" />
+
+## Dashboard
+<img width="529" height="396" alt="image" src="https://github.com/user-attachments/assets/3151cf8a-b1fd-47fe-8e56-6278325422de" />
+
+## MyHabits
+<img width="713" height="251" alt="image" src="https://github.com/user-attachments/assets/25c9ef01-4d7c-44c2-8109-51192aa6d627" />
+
 
 
 
