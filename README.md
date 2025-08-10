@@ -36,6 +36,11 @@ JavaScript (ES6+) - Modern JavaScript features
 ## Live Demo
 https://sifenabduselam.github.io/rewire-app/
 
+## Built by Sifen Abduselam
+🔗 [LinkedIn](https://www.linkedin.com/in/sifen-abduselam-a52798373/
+) | 🌐 [GitHub](https://github.com/sifenabduselam)
+
+
 ## Installation
      Bash
 1. git clone https://github.com/sifenabduselam/rewire-app.git
