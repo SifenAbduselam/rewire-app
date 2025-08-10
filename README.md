@@ -8,6 +8,7 @@ Data Persistence: All progress saved locally and persists between sessions
 Daily Journal: Track your journey with daily reflections
 Responsive Design: Works perfectly on mobile, tablet, and desktop
 Educational Content: Learn about neuroplasticity and brain rewiring
+
 ## Technologies Used
 React.js - Modern component-based architecture
 React Router - Client-side routing
@@ -15,6 +16,15 @@ Tailwind CSS - Utility-first styling framework
 Local Storage API - Browser-based data persistence
 Framer Motion - Smooth animations
 JavaScript (ES6+) - Modern JavaScript features
+
+  ## screenshots
+
+  ![Home Page] (<img width="685" height="331" alt="image" src="https://github.com/user-attachments/assets/412a2512-7916-4bb3-aca7-fc36ab1b9185" />)
+
+
+
+
+
 ## Live Demo
 https://sifenabduselam.github.io/rewire-app/
 
@@ -25,12 +35,5 @@ https://sifenabduselam.github.io/rewire-app/
 3. npm install
 4. npm run dev
 
-# Learning Outcomes
-This project demonstrates , 
-State management with React Hooks , 
-Client-side data persistence , 
-Component-based architecture , 
-Responsive UI design , 
-Professional code organization , 
-Debugging and deployment skills
+
 
